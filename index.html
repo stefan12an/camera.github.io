@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Camera Test</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+
+    body {
+
+      margin: 0;
+
+      background-color: #000;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      height: 100vh;
+
+    }
+
+    video {
+
+      width: 90%;
+
+      height: auto;
+
+      border-radius: 12px;
+
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+
+<video id="video" autoplay playsinline></video>
+
+
+
+<script>
+
+  async function startCamera() {
+
+    try {
+
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+      const videoElement = document.getElementById('video');
+
+      videoElement.srcObject = stream;
+
+    } catch (error) {
+
+      console.error('Camera access error:', error);
+
+      document.body.innerHTML = '<p style="color: white; font-size: 18px; text-align: center;">Camera access failed.<br>' + error.message + '</p>';
+
+    }
+
+  }
+
+
+
+  startCamera();
+
+</script>
+
+
+
+</body>
+
+</html>
